@@ -1,0 +1,165 @@
+package controller.user;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Properties;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import com.UploadObjectSingleOperation;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+
+import bean.AccessBean;
+import bean.SddocBean;
+import model.SddocDao;
+
+/**
+ * Servlet implementation class UpdateSddoc
+ */
+@WebServlet("/dir1/UpdateSddoc")
+public class UpdateSddoc extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		
+		PrintWriter out = response.getWriter();
+	       HttpSession session = request.getSession(true);
+	        String info=null;
+	        String docName=null;
+	        AccessBean bean=(AccessBean)session.getAttribute("right");
+			if(bean.isWelfare())
+			{
+				try
+				{
+					FileItemFactory factory = new DiskFileItemFactory();
+			        ServletFileUpload upload = new ServletFileUpload(factory);
+			        Iterator<FileItem> iterator = null;
+			        
+					try 
+					{
+						iterator = upload.parseRequest(request).iterator();
+					} 
+					catch (FileUploadException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					InputStream image =null;
+					//HashMap<String, Object> m = new HashMap<>();
+					HashMap<String, String> fields = new HashMap<>();
+					String documentType = "";
+					String filename="";
+			        
+					
+					  while (iterator.hasNext()) 
+					  {
+				        	FileItem item = iterator.next();
+				        	if (!item.isFormField())
+				        	{
+				        		documentType=item.getContentType();
+			      			if(documentType.equals("application/pdf"))
+			      			{
+			      				
+			      				filename=item.getName();
+			      				image=item.getInputStream();
+			      			}
+			      			
+			             	}
+				        	else
+			      			{
+			      				fields.put(item.getFieldName(), item.getString());
+			      				System.out.println(item.getString());
+			        		}
+			      	  }
+					
+					Properties prop = new Properties();
+			    	
+			    	InputStream propstream = new FileInputStream(getServletContext().getRealPath("WEB-INF/s3.properties"));
+			    	prop.load(propstream);
+			    	AWSCredentials Credentials = new BasicAWSCredentials(
+								prop.getProperty("AWSAccessKeyId"), 
+								prop.getProperty("AWSSecretKey"));
+			    	String bucketName=prop.getProperty("bucketName");
+					UploadObjectSingleOperation s3client = new UploadObjectSingleOperation();
+					
+					
+					ObjectMetadata metadata=null;
+			        
+			       // image=images.get(key);
+			    	metadata=new ObjectMetadata();
+			    	SddocBean bean2=new SddocBean();
+			    	
+			    	SddocDao dao=new SddocDao();
+			    	
+			    	if(image != null)
+			    	{
+			    		 int id=Integer.parseInt(fields.get("sdid"));
+			    		bean2.setDoctype(fields.get("type"));
+				    	bean2.setDoctitle(fields.get("title"));
+				    	bean2.setDocument(filename);
+				    	dao.updateSDDoc(bean2,id);
+				    	
+				    	
+			    	metadata.setContentLength(Long.valueOf(image.available()));
+			    	s3client.uploadfile(Credentials, bucketName, "AddSDDoc/"+fields.get("sdid")+"_"+filename, image, metadata);
+			    	}
+			    	else
+			    	{
+			    		int id=Integer.parseInt(fields.get("sdid"));
+			    		bean2.setDoctype(fields.get("type"));
+				    	bean2.setDoctitle(fields.get("title"));
+				    	
+				    	dao.updateSDDoc2(bean2, id);
+			    	}
+			    	
+			    	request.setAttribute("cat",dao.getAllDoc());
+			        
+			    	System.out.println("In side SDDoc post method");
+			    	
+			    	response.sendRedirect("SDDoc");
+			    	
+			    	
+			    	/* out.println("<script type=\"text/javascript\">");
+					   out.println("alert('Staff Achiv Added Sucessfully:)');");
+					   out.println("location='DepCourseStruct';");
+					   out.println("</script>");*/
+					
+				}
+				catch(Exception e)
+		        {
+					System.out.println("error= "+e);
+		            out.print(e);
+		        }
+			}
+			else{
+				response.sendRedirect("home.jsp");
+			}
+	}
+
+}

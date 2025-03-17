@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 	factory="org.apache.commons.dbcp.BasicDataSourceFactory" -->
+
+    <!--  Live Database -->
+    <Context antiJARLocking="true"  path="/RMC">
+       <Resource name="pdea" auth="Container" type="javax.sql.DataSource"
+               maxActive="-1" maxIdle="-1" maxWait="10000"
+            username="websitedb" password="websitedb" driverClassName="com.mysql.jdbc.Driver"
+ factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+           url="jdbc:mysql://websitedb.cil8xjn6ypyb.us-east-2.rds.amazonaws.com:3306/pdeabgcollege-02-06-2020"/>    
+     </Context>  
+     
+   
+ 
+
+<!-- factory="org.apache.commons.dbcp.BasicDataSourceFactory" -->
+

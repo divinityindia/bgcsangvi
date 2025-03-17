@@ -1,0 +1,100 @@
+
+		.outer-div
+		{
+				  padding: 30px;
+				  background-color:  white;
+				   height: auto;
+				     width: 100%;
+				     border-top: 2px solid gray;
+				}
+			
+			 li.des
+				{
+				 border-radius: 2%; 
+				 border: 1px solid;
+				 font-size: 13px;
+				}
+			 
+			 
+			ul.listul li
+			{
+			     padding: 8px; 
+               /* padding-left: 0px!important; */
+                background: #002e3b; 
+               /*  background: #41aae6; */
+                /*  background:#577FDB; */
+                font-size: 16px;
+                 color:white;
+                 font-weight: bold;
+                 font-family: sans-serif;
+			}
+			
+			ul.listul li a
+			{
+			color:white;
+			font-weight: bold;
+			}
+			
+			
+			 ul.listul li:hover
+			 {
+			 color: #003135 !important;
+			   background-color: #fdd991; 
+			  /*  background-color: #008000; */
+			}
+			
+			ul.listul li:hover a
+			 {
+			 color: #113f59 !important;
+			 font-weight: bold;
+			  
+			}
+			
+			ul.listul li.active
+			 {
+			 color: #003135 !important;
+			 /*  background-color: #e8e7e3; */
+			  background-color: #fdd991;
+			  font-weight: bold;
+			}
+			
+			h2{
+				    /* color: #ff6600!important;  */
+				   /*  color: #442056!important;  */
+				       color: #09919c!important;
+				   font-weight: bold!important;
+				   font-family: sans-serif;
+				  }
+				  
+				  h1{
+				    /* color: #ff6600!important;  */
+				    color: #43577B!important; 
+				   font-weight: bold!important;
+				  }
+				  
+		 #container1 {
+			    height: 700px;
+			    width: 100%;
+			    /* border: 1px solid green; */
+			    overflow: hidden;
+			    position: relative;
+			}
+			#container2 {
+			    position: absolute;
+			    top: 0px;
+			    bottom: 0px;
+			    left: 0px;
+			    right: -15px;
+			   /*  border: 1px solid blue; */
+			    overflow: auto;
+			}
+			
+			#tg-sidebar .tg-widgetcontent{
+			    margin-top: 5%;
+			}
+			#tg-main{
+			margin-top: -2%;
+			}  
+        hr{
+           border-bottom: 2px solid #003135;
+        }

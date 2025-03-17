@@ -1,0 +1,202 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="Prof. Ramkrishna More Arts, Commerce &amp; Science College" />
+	<meta name="description" content="Prof. Ramkrishna More Arts, Commerce &amp; Science College">
+	<meta name="author" content="Prof. Ramkrishna More Arts, Commerce &amp; Science College">
+	<jsp:include page="title.jsp"></jsp:include>
+	<link rel="favicon" href="assets/images/favicon.png">
+	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../assets/css/bootstrap-theme.css" media="screen">
+	<link rel="stylesheet" href="../assets/css/style.css">
+    <link rel='stylesheet' id='camera-css'  href='../assets/css/camera.css' type='text/css' media='all'>
+
+    	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="../assets/js/modernizr-latest.js"></script>
+	<script type='text/javascript' src='../assets/js/jquery.min.js'></script>
+    <script type='text/javascript' src='../assets/js/fancybox/jquery.fancybox.pack.js'></script>
+
+    <script type='text/javascript' src='../assets/js/jquery.mobile.customized.min.js'></script>
+    <script type='text/javascript' src='../assets/js/jquery.easing.1.3.js'></script>
+    <script type='text/javascript' src='../assets/js/camera.min.js'></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+	<script src="../assets/js/custom.js"></script>
+
+    <link rel="stylesheet" href="../style/style.css">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="assets/js/html5shiv.js"></script>
+	<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
+	 <!-- App css Editor -->
+<!--         <link href="../assets2/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
+<!--         <link href="../assets2/css/icons.css" rel="stylesheet" type="text/css" /> -->
+<!--         <link href="../assets2/css/style.css" rel="stylesheet" type="text/css" /> -->
+
+        <script src="../assets2/js/modernizr.min.js"></script>
+	
+
+
+ 
+</head>
+<body>
+
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse" style="padding-top:0px">
+		<div class="container" style="width: 100%;margin: 0px;padding-left: 0px;padding-right: 0px;">
+
+<%-- 			<jsp:include page="header.jsp"></jsp:include> --%>
+
+			<c:import url="header.jsp"></c:import>
+			<c:if test="${sessionScope.sToken==null}">
+				<c:redirect url="../error.jsp"></c:redirect>
+			</c:if>
+			<jsp:include page="menu.jsp"></jsp:include>
+
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+	<!-- /.navbar -->
+
+	<!-- Header -->
+
+
+
+  <div class="container" style="padding:10px">
+
+	<!-- <style>
+		.planeTbl td, .planeTbl tr:LAST-CHILD td{
+  			border:none;
+			text-align: left;
+			padding:5px 10px;
+			width: 100%
+		}
+		.planeTbl tr:HOVER {
+			background: transparent;
+		}
+	</style> -->
+
+  		<div  style="border:1px solid #aaa;padding:10px;border-radius:5px;text-align: center">
+  			<div style="width:100%;margin: auto">
+	  		<h3>Update Research Publication Details</h3>
+	  		<br/>
+	  	
+	  		
+                <br><br>
+                    <form action="UpdateResearchPubDtl" method="post"> 
+					  <input type="hidden" name="regno" id="regno">
+					  
+					   <table  style="width: 100%; height:350px;margin-left: 0%;margin-top: -2%; background-color:white">
+					   <c:forEach var="dtls" items="${dtl}">
+					     <input type="hidden" name="did" id="did" value="${dtls.rdid}">
+										 <input type="hidden" name="dpid" readonly="readonly" id="dpid" value="${dtls.deptid}">
+								  
+								   <tr>
+									   <td style="font-size: 14px;padding:08px;border: none;color: blue; text-align: left;">
+									   Department Name:-
+									   </td>
+									   <td style="font-size: 14px;padding:08px;border: none;color: white; text-align: left;" >
+									      			
+									   <input type="text" name="dpnm" readonly="readonly" value="${dtls.deptname}" id="dpnm" style="height: 40px;width: 100%; color: black; ">
+									   </td>
+										
+								  
+								   </tr>
+									 <tr>
+									   <td style="font-size: 14px;padding:08px;border: none;color: blue; text-align: left;">
+									   Details:-
+									   </td>
+									   <td  style="font-size: 14px;padding:08px;border: none;color: white; text-align: left;">
+									   <textarea id="elm1" name="area" ><c:out value="${dtls.details}" /></textarea>
+										<!-- <textarea name="dtl" id="details" required="required" style="color: black; " cols="50" rows="5"></textarea> -->
+									   </td>
+										
+								  
+								   </tr>
+									
+									
+								  
+								   <tr>
+										   <td colspan="4" style="font-size: 14px;padding:08px;border: none;color: white; text-align: left;">
+							  
+										  <input type="submit" value=" Updation"   style="height:40px; width:40%; border-radius: 30px;  margin-left: 30%;background-color:#1A79C0;color: white; "></td>
+								   </tr> 
+								   </c:forEach>
+							</table>
+							
+									</form>
+                        
+                      
+						
+						
+						
+
+	  			
+	  		</div>
+  		</div>
+  		<br/>
+  		
+
+
+  </div>
+		
+				
+
+	<jsp:include page="footer.jsp"></jsp:include>
+
+<!-- ---------Editor Files --------- -->
+ <!-- jQuery  -->
+        <script src="../assets2/js/jquery.min.js"></script>
+        <script src="../assets2/js/popper.min.js"></script><!-- Popper for Bootstrap -->
+        <script src="../assets2/js/bootstrap.min.js"></script>
+        <script src="../assets2/js/waves.js"></script>
+        <script src="../assets2/js/jquery.slimscroll.js"></script>
+        <script src="../assets2/js/jquery.scrollTo.min.js"></script>
+
+        <!-- App js -->
+        <script src="../assets2/js/jquery.core.js"></script>
+        <script src="../assets2/js/jquery.app.js"></script>
+<!-- Wysiwig js-->
+        <script src="../plugins/tinymce/tinymce.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                if($("#elm1").length > 0){
+                    tinymce.init({
+                        selector: "textarea#elm1",
+                        theme: "modern",
+                        height:300,
+                        plugins: [
+                            "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                            "save table contextmenu directionality emoticons template paste textcolor"
+                        ],
+                        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+                        style_formats: [
+                            {title: 'Bold text', inline: 'b'},
+                            {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+                            {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+                            {title: 'Example 1', inline: 'span', classes: 'example1'},
+                            {title: 'Example 2', inline: 'span', classes: 'example2'},
+                            {title: 'Table styles'},
+                            {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+                        ]
+                    });
+                }
+            });
+        </script>
+
+</body>
+</html>

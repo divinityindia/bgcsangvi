@@ -1,0 +1,120 @@
+/*-----------------------------------------------------------------------------------*/
+/*	TABLE
+/*-----------------------------------------------------------------------------------*/
+table{
+	border-collapse: collapse;
+}
+
+table th, table td{
+	text-align: center;
+}
+
+table td{
+	border:1px solid #bbb;
+	border-bottom: none;
+	color:#000;
+}
+table tr:LAST-CHILD td{
+	border:1px solid #bbb;
+}
+table th{
+	background-color: #3d84e6;
+	color:#fff;
+	font-weight: bold;
+	border:1px solid #ddd;
+	border-bottom: none;
+	padding:8px 5px;
+}
+
+table tr:HOVER{
+	background: #EEE;
+}
+
+
+
+
+
+/*-----------------------------------------------------------------------------------*/
+ /********************************SI_SCRL***********************************/
+table.Vscroll  {
+    display: flex;
+    flex-flow: column;
+    height: 400px;
+    width: 100%;
+}
+table.Vscroll  thead {
+    flex: 0 0 auto;
+    width: calc(100% - 1.2em);
+}
+
+table.Vscroll td,table.Vscroll th{
+/*     padding: 3px; */
+}
+table.Vscroll td{
+	padding-top:3px;
+	padding-bottom:3px;
+}
+
+table.Vscroll  tbody {
+    /* body takes all the remaining available space */
+    flex: 1 1 auto;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+table.Vscroll  tbody tr {
+    width: 100%;
+}
+table.Vscroll  thead,
+table.Vscroll  tbody tr {
+    display: table;
+    table-layout: fixed;
+}
+/* decorations */
+.table-container {
+    border: 1px solid black;
+    padding: 0.3em;
+}
+.Vscroll td:nth-child(1),.Vscroll th:nth-child(1){
+    /*width: 50px;*/
+    }
+
+   /*******************************************************************/
+   /*	Buttons
+   /*******************************************************************/
+ .red-btn{
+    background: #ff0033;
+  border-radius: 3px;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 11px;
+  color: #ffffff;
+  padding: 2px;
+  text-decoration: none;
+  border: none;
+}
+.red-btn:hover
+{
+    background: #cc0033;
+}
+
+
+.green-btn{
+    background:  #008080;
+  border-radius: 3px;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 11px;
+  color: #ffffff;
+  padding: 2px;
+  text-decoration: none;
+  border: none;
+}
+.green-btn:hover
+{
+    background: #009933;
+}
+
+span.req{
+	color:red;
+	}

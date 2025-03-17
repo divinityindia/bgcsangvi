@@ -1,0 +1,65 @@
+.outerTbl img{
+	max-width: 100px;
+	max-height: 100px;
+}
+.outerTbl td{
+	border:0px solid #aaa;
+	vertical-align: top;
+	padding:10px;
+	background: #00808033;
+	text-align: left;
+}
+.outerTbl td.btmRw{
+	background: #428bca33;
+	padding-bottom: 0px;
+
+}
+.outerTbl tr td div.col-lg-2,.outerTbl tr td div.col-lg-4{
+	font-size: 0.9em;
+}
+.outerTbl tr td div.row{
+	padding: 5px 0px;
+}
+.outerTbl tr td div.blankDV{
+	background: #f4f4f4 ;
+	height: 5px;
+}
+.outerTbl tr:hover{
+	background: transparent;
+}
+.outerTbl tr:LAST-CHILD td{
+	border:none;
+}
+.EnameB{
+	color:blue;
+	font-size: 1.2em;
+}
+/* ----------------- NEW ----------------------- */
+/* .row {
+    //margin-right: -1px;
+    //margin-left: 0px;
+}
+.outerTbl td.btmRw{
+	padding-top:0px;
+							padding:0px;
+							margin:0px;
+
+
+}
+.outerTbl{border-collapse: collapse;}
+.outerTbl tr td div.row{
+	margin-right: 0px;
+    margin-left: 0px;
+	border-left:1px solid #008080;
+	border-right:1px solid #008080;
+}
+.outerTbl tr td div.blankDV{
+	border-top:1px solid #008080;
+	border-left:none;
+	border-right:none;
+}
+.outerTbl tr:nth-child(odd){
+	border:1px solid #008080;
+	border-bottom:none;
+
+} */
